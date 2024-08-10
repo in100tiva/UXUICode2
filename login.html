@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PDV Lanchonete</title>
+    <style>
+        :root {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --card-bg-color: #1e1e1e;
+            --card-border-radius: 0.5rem;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: var(--card-bg-color);
+            padding: 2rem;
+            border-radius: var(--card-border-radius);
+            box-shadow: var(--card-shadow);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 1rem;
+            color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login - PDV Lanchonete</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Usuário" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Simples verificação de login (substitua por sua lógica de autenticação real)
+            if (username === 'luan' && password === '123456') {
+                localStorage.setItem('loggedIn', 'true');
+                window.location.href = 'pdv.html'; // Redireciona para a página principal do PDV
+            } else {
+                document.getElementById('message').textContent = 'Usuário ou senha incorretos.';
+            }
+        });
+    </script>
+</body>
+</html>
