@@ -101,47 +101,10 @@ export const produtos = [
     }
 ];
 
-export function renderProdutos(categoria = 'Todas', adicionarAoCarrinho, mesaAtual) {
-    const produtosContainer = document.getElementById('produtosContainer');
-    produtosContainer.innerHTML = '';
+export function getProdutosPorCategoria(categoria) {
+    return produtos.filter(produto => produto.categoria === categoria);
+}
 
-    const produtosFiltrados = categoria === 'Todas' ? produtos : produtos.filter(produto => produto.categoria === categoria);
-
-    produtosFiltrados.forEach(produto => {
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const img = document.createElement('img');
-        img.src = produto.imagem;
-        img.alt = produto.nome;
-        card.appendChild(img);
-
-        const cardContent = document.createElement('div');
-        cardContent.className = 'card-content';
-        cardContent.innerHTML = `
-            <h3>${produto.nome}</h3>
-            <p>${produto.descricao}</p>
-            <p class="font-bold">R$ ${produto.preco.toFixed(2)}</p>
-        `;
-
-        const quantidadeInput = document.createElement('input');
-        quantidadeInput.type = 'number';
-        quantidadeInput.value = 1;
-        quantidadeInput.min = 1;
-        quantidadeInput.className = 'quantidade-input';
-
-        const addButton = document.createElement('button');
-        addButton.textContent = 'Adicionar ao Carrinho';
-        addButton.addEventListener('click', () => {
-            const quantidade = parseInt(quantidadeInput.value);
-            if (!isNaN(quantidade) && quantidade > 0) {
-                adicionarAoCarrinho(produto, quantidade, mesaAtual);
-            }
-        });
-        cardContent.appendChild(quantidadeInput);
-        cardContent.appendChild(addButton);
-
-        card.appendChild(cardContent);
-        produtosContainer.appendChild(card);
-    });
+export function getAllCategorias() {
+    return [CATEGORIA_BEBIDAS, CATEGORIA_DOCES, CATEGORIA_LANCHES];
 }

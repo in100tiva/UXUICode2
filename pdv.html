@@ -3,82 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDV Cafeteria</title>
+    <title>PDV - Café Serenidade</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <header>
-        <h1>PDV Cafeteria</h1>
-        <button id="logoutBtn">Logout</button>
+        <div class="logo">
+            <h1>Café Serenidade</h1>
+        </div>
+        <nav>
+            <button class="nav-btn">Home</button>
+            <button class="nav-btn">Relatório</button>
+            <button class="nav-btn">Ajuda</button>
+        </nav>
     </header>
 
-    <main class="container">
-        <section class="mesa-controls">
-            <input type="number" id="mesaInput" placeholder="Número da Mesa" min="1" max="99">
-            <button id="abrirMesaBtn">Abrir Nova Mesa</button>
+    <main>
+        <section id="mesas" class="section">
+            <h2>Mesas</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar mesa...">
+                <button id="searchBtn">Buscar</button>
+            </div>
+            <div id="mesasGrid"></div>
         </section>
 
-        <section id="tabsList" class="tabs-list"></section>
-
-        <section id="tabsContent" class="tabs-content"></section>
-
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span id="closeModal" class="close">&times;</span>
-                <h2>Catálogo de Produtos</h2>
-                <select id="categoriaSelect">
-                    <option value="Todas">Todas</option>
-                    <option value="Bebidas">Bebidas</option>
-                    <option value="Doces">Doces</option>
-                    <option value="Lanches">Lanches</option>
-                </select>
-                <div id="produtosContainer" class="produtos-container"></div>
+        <section id="carrinho" class="section">
+            <h2>Carrinho</h2>
+            <div id="carrinhoItems"></div>
+            <div id="carrinhoTotal">
+                Total: <span id="totalValue">R$ 0.00</span>
             </div>
-        </div>
-
-        <div id="modalPagamento" class="modal">
-            <div class="modal-content">
-                <span id="closeModalPagamento" class="close">&times;</span>
-                <h2>Pagamento e Observações</h2>
-                <form id="formPagamento">
-                    <div class="form-group">
-                        <label for="metodoPagamento">Método de Pagamento</label>
-                        <select id="metodoPagamento" required>
-                            <option value="Cartão de Crédito">Cartão de Crédito</option>
-                            <option value="Dinheiro">Dinheiro</option>
-                            <option value="Pix">Pix</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="observacoes">Observações</label>
-                        <textarea id="observacoes"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>
-                            <input type="checkbox" id="incluirServico">
-                            Incluir 10% de serviço
-                        </label>
-                    </div>
-                    <button type="submit">Finalizar Pedido</button>
-                </form>
-            </div>
-        </div>
-
-        <div id="modalPagamentoParcial" class="modal">
-            <div class="modal-content">
-                <span id="closeModalPagamentoParcial" class="close">&times;</span>
-                <h2>Pagamento Parcial</h2>
-                <form id="formPagamentoParcial">
-                    <div class="form-group">
-                        <label for="valorPagamentoParcial">Valor do Pagamento Parcial</label>
-                        <input type="number" id="valorPagamentoParcial" step="0.01" required>
-                    </div>
-                    <button type="submit">Abater Valor</button>
-                </form>
-                <div id="resumoPagamentoParcial"></div>
-            </div>
-        </div>
+            <button id="adicionarProdutoBtn">Adicionar Produto</button>
+            <button id="finalizarPedidoBtn">Finalizar Pedido</button>
+        </section>
     </main>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
     <script type="module" src="js/app.js"></script>
 </body>

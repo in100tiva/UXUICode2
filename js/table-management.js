@@ -8,8 +8,10 @@ export function setFecharMesaCallback(callback) {
 export function abrirMesa(numeroMesa) {
     if (!mesas[numeroMesa]) {
         mesas[numeroMesa] = { carrinho: [], totalAbatido: 0, pagamentosParciais: [] };
+        renderTabs();
+    } else {
+        console.warn(`A mesa ${numeroMesa} já está aberta.`);
     }
-    renderTabs();
     return numeroMesa;
 }
 
@@ -21,6 +23,10 @@ export function fecharMesa(numeroMesa) {
 
 export function adicionarAoCarrinho(produto, quantidade, numeroMesa) {
     const mesa = mesas[numeroMesa];
+    if (!mesa) {
+        console.error(`Mesa ${numeroMesa} não encontrada.`);
+        return;
+    }
     const itemExistente = mesa.carrinho.find(item => item.id === produto.id);
     if (itemExistente) {
         itemExistente.quantidade += quantidade;
@@ -53,7 +59,6 @@ export function renderTabs() {
         tabsList.appendChild(tabButton);
     });
 
-    // Render the first mesa by default
     renderMesaContent(Object.keys(mesas)[0]);
 }
 
